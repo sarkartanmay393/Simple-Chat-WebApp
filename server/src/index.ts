@@ -7,11 +7,11 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "https://simple-chat-client-theta.vercel.app",
   },
 });
 
-app.use(cors());
+app.use(cors({ origin: "https://simple-chat-client-theta.vercel.app" }));
 app.use(express.json());
 
 app.get("/", (_, res) => {
@@ -36,5 +36,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(8080, () => {
-  console.log("Server running at http://localhost:8080");
+  console.log("Server running at https://simple-chat-server-five.vercel.app");
 });

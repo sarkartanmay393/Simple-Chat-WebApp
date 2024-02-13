@@ -46,7 +46,7 @@ export default function ChatDashboard() {
       })
     );
 
-    const socket = io("ws://localhost:8080");
+    const socket = io("ws://simple-chat-server-five.vercel.app");
 
     socket.on("connect", () => {
       console.log("Connection established");
@@ -101,7 +101,7 @@ export default function ChatDashboard() {
       setNewUser(false);
       set(username);
     }
-  }, []);
+  }, [username]);
 
   const handleSend = () => {
     if (input) {
@@ -123,7 +123,7 @@ export default function ChatDashboard() {
   return (
     <div className="h-screen flex flex-col overflow-hidden items-center">
       <header className="h-[4rem] p-1 border-b flex flex-col items-center justify-center">
-        <h1 className="scroll-m-20 text-3xl font-bold tracking-normal lg:text-4xl">
+        <h1 className="scroll-m-20 text-3xl font-bold tracking-normal lg:text-3xl">
           Global Chats
         </h1>
         <div className="w-full h-fit overflow-x-scroll overflow-y-hidden">
@@ -133,8 +133,13 @@ export default function ChatDashboard() {
               typingUser.size === 0 && "hidden"
             )}
           >
-            Typing{" "}
+            {typers.length === 1
+              ? typers[0] !== username && "Typing "
+              : "Typing "}
             {typers.map((user, i) => {
+              if (user === username) {
+                return "";
+              }
               if (i + 1 === typers.length) {
                 return user;
               }
