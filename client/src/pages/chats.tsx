@@ -10,7 +10,7 @@ import {
 } from "react";
 
 import { Socket, io } from "socket.io-client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Send } from "lucide-react";
 import { cn, session } from "@/lib/utils";
 
