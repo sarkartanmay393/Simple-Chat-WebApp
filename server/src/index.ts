@@ -7,11 +7,21 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: [
+      "https://simple-chat-client-theta.vercel.app/",
+      "http://localhost:5173",
+    ],
   },
 });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://simple-chat-client-theta.vercel.app/",
+      "http://localhost:5173",
+    ],
+  })
+);
 app.use(express.json());
 
 app.get("/", (_, res) => {
