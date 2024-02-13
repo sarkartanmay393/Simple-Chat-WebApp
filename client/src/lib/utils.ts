@@ -6,3 +6,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const BASEURL = "http://localhost:5173";
+
+export const session = () => {
+  const key = "username";
+  return {
+    get: () => window.sessionStorage.getItem(key),
+    set: (value: string) => window.sessionStorage.setItem(key, value),
+  };
+};
