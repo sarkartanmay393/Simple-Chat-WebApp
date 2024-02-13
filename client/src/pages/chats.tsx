@@ -46,7 +46,7 @@ export default function ChatDashboard() {
       })
     );
 
-    const socket = io("ws://simple-chat-server-five.vercel.app");
+    const socket = io("https://simple-chat-server-five.vercel.app");
 
     socket.on("connect", () => {
       console.log("Connection established");
