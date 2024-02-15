@@ -1,31 +1,9 @@
-import express from "express";
-import { createServer } from "http";
 import { Server } from "socket.io";
-import cors from "cors";
 
-const app = express();
-const server = createServer(app);
-const io = new Server(server, {
+const io = new Server(8080, {
   cors: {
-    origin: [
-      "https://simple-chat-client-theta.vercel.app/",
-      "http://localhost:5173",
-    ],
+    origin: ["http://localhost:5173", "https://simplechat-ui.vercel.app"],
   },
-});
-
-app.use(
-  cors({
-    origin: [
-      "https://simple-chat-client-theta.vercel.app/",
-      "http://localhost:5173",
-    ],
-  })
-);
-app.use(express.json());
-
-app.get("/", (_, res) => {
-  res.json("Running");
 });
 
 io.on("connection", (socket) => {
@@ -33,6 +11,7 @@ io.on("connection", (socket) => {
 
   socket.on("userMessage", (message, username) => {
     const time = new Date();
+    console.log(message);
     io.emit("globalMessage", message, username, time);
   });
 
@@ -45,6 +24,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(8080, () => {
-  console.log("Server running at https://simple-chat-server-five.vercel.app");
-});
+io.listen(8080);

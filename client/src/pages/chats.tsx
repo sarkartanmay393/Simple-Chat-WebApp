@@ -12,7 +12,7 @@ import {
 import { Socket, io } from "socket.io-client";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Send } from "lucide-react";
-import { cn, session } from "@/lib/utils";
+import { BASEURL, cn, session } from "@/lib/utils";
 
 interface Message {
   body: string;
@@ -46,7 +46,7 @@ export default function ChatDashboard() {
       })
     );
 
-    const socket = io("ws://simple-chat-server-five.vercel.app");
+    const socket = io(BASEURL);
 
     socket.on("connect", () => {
       console.log("Connection established");
