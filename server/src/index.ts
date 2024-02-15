@@ -2,7 +2,7 @@ import { Server } from "socket.io";
 
 const io = new Server(8080, {
   cors: {
-    origin: "*",
+    origin: ["http://localhost:5173", "https://simplechat-ui.vercel.app"],
   },
 });
 
@@ -23,5 +23,3 @@ io.on("connection", (socket) => {
     console.log(`disconnect ${socket.id}`);
   });
 });
-
-io.listen(8080);
